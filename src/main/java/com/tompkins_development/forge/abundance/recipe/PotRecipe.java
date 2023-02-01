@@ -3,11 +3,13 @@ package com.tompkins_development.forge.abundance.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tompkins_development.forge.abundance.AbundanceMod;
+import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
@@ -27,8 +29,9 @@ public class PotRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-      return recipeItems.get(0).test(pContainer.getItem(1));
+        //Match code here
     }
+
 
     @Override
     public ItemStack assemble(SimpleContainer pContainer) {
@@ -76,10 +79,11 @@ public class PotRecipe implements Recipe<SimpleContainer> {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
+            NonNullList<Ingredient> inputs = NonNullList.withSize(2, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+                System.out.println(ingredients.get(i));
+                inputs.set(i,Ingredient.fromJson(ingredients.get(i)));
             }
 
             return new PotRecipe(id, output, inputs);
