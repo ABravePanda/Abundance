@@ -1,0 +1,14 @@
+{
+  "type": "abundance:pot",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:rabbit"
+    }
+  ],
+  "output": {
+    "item": "minecraft:rabbit_stew"
+  }
+}
